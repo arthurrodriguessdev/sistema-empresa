@@ -19,14 +19,14 @@ class Sistema:
             
             selecionar_opcao = input("Informe o número da opção desejada: ")
 
-            if selecionar_opcao >= 1 and selecionar_opcao <= 4:
-                try:
-                    selecionar_opcao = int(selecionar_opcao)
-                except ValueError:
-                    print("\nSomente valores válidos!\n")
+            try:
+                selecionar_opcao = int(selecionar_opcao)
+            except ValueError:
+                print("\nSomente valores válidos!\n")
 
+            if selecionar_opcao >= 1 and selecionar_opcao <= 4:
                 if selecionar_opcao == 1:
-                    pass
+                    cls.dados_funcionarios()
 
                 elif selecionar_opcao == 4:
                     cls.menu = False
@@ -51,7 +51,7 @@ class Sistema:
         funcionario = Funcionario(nome, cpf, data_nascimento, matricula, salario_base)
         cls.lista_funcionarios.append(funcionario)
 
-        print("\nFuncionário cadastrado com sucesso!\n")
+        print("\nFuncionário cadastrado com sucesso!")
 
         print("\n=== CARGOS ===\n")
         print("1 - Gerente")
@@ -60,10 +60,15 @@ class Sistema:
 
         selecionar_cargo = input("Informe o número equivalente ao cargo designado: ")
 
+        try:
+            selecionar_cargo = int(selecionar_cargo)
+        except ValueError:
+            print("\nSomente números válidos!\n")
+
         if selecionar_cargo >= 1 and selecionar_cargo <= 3:
             if selecionar_cargo == 1:
-                gerente = Gerente(funcionario)
-                cls.lista_gerentes.append(funcionario)
+                gerente = Gerente(nome, cpf, data_nascimento, matricula, salario_base)
+                cls.lista_gerentes.append(gerente)
 
                 print("\nGerente cadastrado com sucesso!\n")
         else:

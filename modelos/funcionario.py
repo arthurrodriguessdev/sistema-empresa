@@ -1,12 +1,12 @@
-from pessoa import Pessoa
+from modelos.pessoa import Pessoa
 
 class Funcionario(Pessoa):
-    def __init__(self, nome, cpf, data_nascimento, matricula, salario_base, faltas = 0):
+    def __init__(self, nome, cpf, data_nascimento, matricula, salario_base):
         super().__init__(nome, cpf, data_nascimento)
 
         self.matricula = matricula
         self.__salario_base = salario_base
-        self.__faltas = faltas
+        self.__faltas = 0
 
 
     @property
