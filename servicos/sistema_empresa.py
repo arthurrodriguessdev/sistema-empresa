@@ -10,7 +10,7 @@ class Sistema:
     
     @classmethod
     def menu_principal(cls):
-        while cls.menu == True:
+        while cls.menu:
             print("\n=== SISTEMA EMPRESARIAL ===\n")
             print("1 - Cadastrar funcionário")
             print("2 - Registrar falta")
@@ -23,6 +23,7 @@ class Sistema:
                 selecionar_opcao = int(selecionar_opcao)
             except ValueError:
                 print("\nSomente valores válidos!\n")
+                return
 
             if selecionar_opcao >= 1 and selecionar_opcao <= 4:
                 if selecionar_opcao == 1:
@@ -35,24 +36,7 @@ class Sistema:
                 print("\nNúmero inválido!\n")
 
     @classmethod
-    def dados_funcionarios(cls):
-        nome = input("\nInforme o nome do funcionário: ").strip()
-        cpf = input("Digite o número de CPF: ")
-        data_nascimento = input("Qual é a data de nascimento do funcionário? ")
-        matricula = input("Matrícula do funcionário: ")
-        salario_base = input("Salário do trabalhador: ")
-
-        try:
-            matricula = int(matricula)
-            salario_base = float(salario_base)
-        except ValueError:
-            print("\nSomente números válidos!\n")
-
-        funcionario = Funcionario(nome, cpf, data_nascimento, matricula, salario_base)
-        cls.lista_funcionarios.append(funcionario)
-
-        print("\nFuncionário cadastrado com sucesso!")
-
+    def cadastro_gerente(cls):
         print("\n=== CARGOS ===\n")
         print("1 - Gerente")
         print("2 - Vendedor")
@@ -64,15 +48,31 @@ class Sistema:
             selecionar_cargo = int(selecionar_cargo)
         except ValueError:
             print("\nSomente números válidos!\n")
+            return
 
         if selecionar_cargo >= 1 and selecionar_cargo <= 3:
             if selecionar_cargo == 1:
+                nome = input("\nInforme o nome do funcionário: ").strip()
+                cpf = input("Digite o número de CPF: ")
+                data_nascimento = input("Qual é a data de nascimento do funcionário? ")
+                matricula = input("Matrícula do funcionário: ")
+                salario_base = input("Salário do trabalhador: ")
+
+                try:
+                    matricula = int(matricula)
+                    salario_base = float(salario_base)
+
+                except ValueError:
+                    print("\nSomente números válidos!\n")
+                    return
+
                 gerente = Gerente(nome, cpf, data_nascimento, matricula, salario_base)
                 cls.lista_gerentes.append(gerente)
+                cls.lista_funcionarios.append(gerente)
 
                 print("\nGerente cadastrado com sucesso!\n")
+
+            elif selecionar_cargo == 2:
+                pass
         else:
             print("\nOpção inválida!\n")
-            
-        
-
